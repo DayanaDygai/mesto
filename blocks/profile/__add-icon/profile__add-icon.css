@@ -1,9 +1,9 @@
-.profile__add-button_icon {
+.profile__add-icon {
     width: 22px;
 }
 
 @media screen and (max-width: 767px) {
-	.profile__add-button_icon {
+	.profile__add-icon {
 		width: 16px;
        
 	}

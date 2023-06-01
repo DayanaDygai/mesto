@@ -1,10 +1,10 @@
-.popup__button-esc_icon {
+.popup__esc-icon {
     width: 32px;
     height: 32px;
 }
 
 @media screen and (max-width: 767px) {
-	.popup__button-esc_icon {
+	.popup__esc-icon {
 		width: 20px;
 		height: 20px;
        
