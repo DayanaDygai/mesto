@@ -1,0 +1,6 @@
+.element__button {
+    border: none;
+    box-sizing: content-box;
+    background-color: transparent;
+    padding: 0;
+}

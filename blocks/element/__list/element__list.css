@@ -1,0 +1,10 @@
+.element__list {
+	max-width: 246px;
+	max-height: 23px;
+	display: flex;
+	justify-content: space-between;
+	margin: 25px 15px 31px 21px;
+	padding: 0;
+	list-style-type: none;
+	align-items: end;
+}

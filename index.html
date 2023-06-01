@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Mesto</title>
+</head>
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="images/logo_header.svg" alt="Mesto">
+        <hr class="header__line">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <div class="profile__avatar"></div>
+            <div class="profile__info">
+              <h1 class="profile__name" >Жак-Ив Кусто</h1>
+              <button class="profile__edit-button" type="button">
+                <img class="profile__edit-button_img" src="images/edit_button.svg" alt="Изменить">
+              </button>
+              <p class="profile__description">Исследователь океана</p>
+            
+            </div>
+            <button class="profile__add-button " type="button">
+              <img class="profile__add-button_img" src="images/add_button.svg" alt="Добавить">
+            </button>
+        </section>
+        <section class="elements">
+          <article class="element">
+            <img class="element__img" src="images/karashaevsk.jpg" alt="Карачаевск">
+            <ul class="element__list">
+              <li class="element__list-item element__list-item_overflow"><h2 class="element__title">Карачаевск</h2></li>
+              <li class="element__list-item"><button class="element__button" type="button">
+                <img class="element__button_like" src="images/like__button.svg" alt="Нравится"> 
+              </button></li>
+            </ul>
+          </article>
+          <article class="element">
+            <img class="element__img" src="images/elbrus.jpg" alt="Эльбрус">
+            <ul class="element__list">
+              <li class="element__list-item element__list-item_overflow"><h2 class="element__title">Гора Эльбрус</h2></li>
+              <li class="element__list-item"><button class="element__button" type="button">
+                  <img class="element__button_like"  src="images/like__button.svg" alt="Нравится">
+              </button></li>
+            </ul>
+          </article>
+          <article class="element">
+            <img class="element__img" src="images/dombai.jpg" alt="Домбай">
+            <ul class="element__list">
+              <li class="element__list-item element__list-item_overflow"><h2 class="element__title">Домбай</h2></li>
+              <li class="element__list-item"><button class="element__button" type="button">
+                <img class="element__button_like" src="images/like__button.svg" alt="Нравится">
+              </button></li>
+            </ul>
+          </article>
+          <article class="element">
+            <img class="element__img" src="images/elbrus.jpg" alt="Эльбрус">
+            <ul class="element__list">
+              <li class="element__list-item element__list-item_overflow"><h2 class="element__title">Гора Эльбрус</h2></li>
+              <li class="element__list-item"><button class="element__button" type="button">
+                <img class="element__button_like" src="images/like__button.svg" alt="Нравится">
+              </button></li>
+            </ul>
+          </article>
+          <article class="element">
+            <img class="element__img" src="images/dombai.jpg" alt="Домбай">
+            <ul class="element__list">
+              <li class="element__list-item element__list-item_overflow"><h2 class="element__title">Домбай</h2></li>
+              <li class="element__list-item"><button class="element__button" type="button">
+                <img class="element__button_like" src="images/like__button.svg" alt="Нравится">
+              </button></li>
+            </ul>
+          </article>
+          <article class="element">
+            <img class="element__img" src="images/karashaevsk.jpg" alt="Карачаевск">
+            <ul class="element__list">
+              <li class="element__list-item element__list-item_overflow"><h2 class="element__title">Карачаево-Черкессия</h2></li>
+              <li class="element__list-item"><button class="element__button" type="button">
+                <img class="element__button_like"  src="images/like__button.svg" alt="Нравится">
+              </button></li>
+            </ul>
+          </article>
+        </section>     
+    </main>
+    <footer class="footer">
+      <h2 class="footer__title">© 2020 Mesto Russia</h2>
+    </footer>
+    <section class="popup ">
+      <div class="popup__container">
+        <form class="popup__form">
+          <button class="popup__button-esc" type="button">
+            <img class="popup__button-esc_img"  src="images/Close Icon.svg" alt="Нравится">
+          </button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <fieldset class="popup__input-container">
+            <input type="text" class="popup__input popup__input-name" placeholder="Ваше Имя" value="Жак-Ив Кусто">
+            <input type="text" class="popup__input popup__input-work" placeholder="Место работы" value="Исследователь океана">
+          </fieldset>
+          <button class="popup__button-save" type="submit"><p class="form__button-text">Сохранить</p></button>
+        </form>
+      </div>
+    </section>
+    <script src="script.js"></script>
+</body>
