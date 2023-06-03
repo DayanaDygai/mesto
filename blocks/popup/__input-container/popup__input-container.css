@@ -10,3 +10,9 @@
     font-family: 'Inter', 'Arial', sans-serif;
 
 }
+
+@media screen and (max-width: 1200px) {
+	.popup__input-container {
+        margin-top: 75px;
+}
+	}

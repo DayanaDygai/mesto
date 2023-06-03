@@ -4,8 +4,9 @@
     border: 0;
     height: 24px;
     box-sizing: border-box;
-    border-bottom: 1px solid #bcbcc4;
+    border-bottom: 1px solid #000000;
     background-color: transparent;
     font-size: 14px;
     font-family: inherit;
+    line-height: 17px;
 }
