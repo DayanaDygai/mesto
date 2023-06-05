@@ -2,13 +2,11 @@
     display: flex;
     gap: 18px;
     justify-content: space-between;
-    max-height: 39px; 
 }
 
 @media screen and (max-width: 1200px) {
 	.profile__info-element {
 		gap: 10px;
-        max-height: 26px;
 	}
   }
 
