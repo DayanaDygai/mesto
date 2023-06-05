@@ -9,8 +9,8 @@ let formElement = document.querySelector('.popup__form'); //находим фо�
 
 function openedPopup() { 
     popup.classList.add('popup_opened'); //добавляем класс меняющий значение display для попап при нажатии кнопки редактирования
-    nameInput.value = inputName.textContent; //вставляем данные в value инпута name значение текста из профиля
-    jobInput.value = inputWork.textContent; //вставляем данные в value инпута work значение текста из профиля
+    nameInput.value = nameProfile.textContent; //вставляем данные в value инпута name значение текста из профиля
+    jobInput.value = descriptionProfile.textContent; //вставляем данные в value инпута work значение текста из профиля
   
   
   }
