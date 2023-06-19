@@ -1,8 +1,8 @@
-.elements {
+.card__conteiner {
     max-width: 880px;
     margin: 51px auto 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 282px);
     justify-content: center;
     column-gap: 17px;
     row-gap: 20px;
@@ -12,14 +12,14 @@
 
   
   @media screen and (max-width: 1016px) {
-    .elements {
+    .card__conteiner {
       max-width: calc(100% - 48px);
       grid-template-columns: repeat(2, 282px);
     }
   }
   
   @media screen and (max-width: 767px) {
-    .elements {
+    .card__conteiner {
       max-width: calc(100% - 38px);
       margin-top: 36px;
       grid-template-columns: repeat(auto-fit, 282px);

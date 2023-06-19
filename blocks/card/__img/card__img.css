@@ -1,7 +1,8 @@
-.element__img {
+.card__img {
     overflow: hidden;
     box-sizing:content-box;
     object-fit: cover;
-    display: block;
+    display: block; 
+    height: 282px;
 }
 

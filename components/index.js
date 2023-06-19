@@ -1,4 +1,4 @@
-let popup = document.querySelector('.popup'); //находим попап в DOM  
+let popup = document.querySelector('#popup__profile'); //находим попап в DOM  
 let editButton = document.querySelector('.profile__edit-button'); //находим кнопку редактирования в DOM 
 let escButton = document.querySelector('.popup__button-esc'); // находим кнопку закрытия в DOM 
 let nameInput = document.querySelector('.popup__input_type_name'); //находим значение формы инпута имени в DOM 
