@@ -25,7 +25,7 @@ const initialCards = [
     }
   ];
 
-const elementCard = document.querySelector('.card__conteiner');//находим контейнер попапа карточки
+const elementCard = document.querySelector('.cards__conteiner');//находим контейнер попапа карточки
 const elementTemplate = document.querySelector('#card-item-template').content.querySelector('.card');//находим темплейт карточек
 const addButton = document.querySelector('.profile__add-button');//находим кнопку добавления новых карточек
 const addCardPopup = document.querySelector('#popup__card');//находим попап добавления карточек
@@ -35,7 +35,7 @@ const formCard = addCardPopup.querySelector('#popup__form-card');//находи�
 const popupOpenImg = document.querySelector('#popup__image');//находим попап открытия картинок
 const popupImg = popupOpenImg.querySelector('.popup__img');//находим открытые картинки
 const popupTitleImg = popupOpenImg.querySelector('.popup__img-title');//находим заголовок открытой картинки
-const imgButtonEsc = popupOpenImg.querySelector('.popup__image_button-esc');//находим кнопку закрытия картинки
+const imgButtonEsc = popupOpenImg.querySelector('.popup__image__button-esc');//находим кнопку закрытия картинки
 
 
 function openPopup (popup) {

@@ -1,4 +1,4 @@
-.card__conteiner {
+.cards__conteiner {
     max-width: 880px;
     margin: 51px auto 0;
     display: grid;
@@ -12,14 +12,14 @@
 
   
   @media screen and (max-width: 1016px) {
-    .card__conteiner {
+    .cards__conteiner {
       max-width: calc(100% - 48px);
       grid-template-columns: repeat(2, 282px);
     }
   }
   
   @media screen and (max-width: 767px) {
-    .card__conteiner {
+    .cards__conteiner {
       max-width: calc(100% - 38px);
       margin-top: 36px;
       grid-template-columns: repeat(auto-fit, 282px);
