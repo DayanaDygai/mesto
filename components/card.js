@@ -35,7 +35,7 @@ const formCard = addCardPopup.querySelector('#popup__form-card');//находи�
 const popupOpenImg = document.querySelector('#popup__image');//находим попап открытия картинок
 const popupImg = popupOpenImg.querySelector('.popup__img');//находим открытые картинки
 const popupTitleImg = popupOpenImg.querySelector('.popup__img-title');//находим заголовок открытой картинки
-const imgButtonEsc = popupOpenImg.querySelector('.popup__image__button-esc');//находим кнопку закрытия картинки
+const imgButtonEsc = popupOpenImg.querySelector('.popup__button-esc_image');//находим кнопку закрытия картинки
 
 
 function openPopup (popup) {
