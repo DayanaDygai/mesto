@@ -1,6 +1,6 @@
 .popup__container_img {
     max-width: 75vw;
-    max-width: 75vh;
+    max-height: 75vh;
     object-fit: contain;
     background: transparent;
 }
