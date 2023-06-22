@@ -99,17 +99,11 @@ function createCard ({name, link}) {
       cardLike.classList.toggle('card__button-like_active');
     })
 
-
     cardRemove.addEventListener('click', function() {
       //функция удаления карточки при нажатии на корзину
       card.remove();
     })
-
-    imgButtonEsc.addEventListener('click', function() {
-      //используем функцию закрытия попапа при закрытии картинки
-      closePopup(popupOpenImg);
-    });
-    
+ 
     imgCard.addEventListener('click', function () {
       //используем функцию открытия попапа при нажатии на картинку
       openedPopup(popupOpenImg);
@@ -122,6 +116,11 @@ function createCard ({name, link}) {
     return card;
 
 }
+
+imgButtonEsc.addEventListener('click', function() {
+  //используем функцию закрытия попапа при закрытии картинки
+  closePopup(popupOpenImg);
+});
 
 addButton.addEventListener('click', function() {
   //используем функция открытия попапа при нажатии на кнопку добавления нововй карточки
