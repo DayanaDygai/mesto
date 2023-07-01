@@ -1,4 +1,3 @@
-
 const popupProfile = document.querySelector('#popup__profile'); //находим попап изменения информации профиля в DOM  
 const editButton = document.querySelector('.profile__edit-button'); //находим кнопку редактирования информации профиля в DOM 
 const escButtonProfile = popupProfile.querySelector('.popup__button-esc'); // находим кнопку закрытия редактирования профиля в DOM 
@@ -11,11 +10,31 @@ const formProfile = popupProfile.querySelector('.popup__form'); //находим
 function openedPopup (popup) {
   //функция для открытия попапов
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
+  popup.addEventListener('click', closeOverlay);
 }
 
 function closePopup (popup) {
   //функция закрытия попапов
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc);
+  popup.removeEventListener('click', closeOverlay);
+}
+
+function closeOverlay (evt) {
+  //функция закрытия попапов при клике на оверлей
+  if(evt.target.classList.contains('popup_opened')) {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  };
+}
+
+function closePopupEsc(evt) {
+  // //функция закрытия попапов при нажатии на escape
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
+  }
 }
 
 function handleProfileFormSubmit (evt) {
@@ -31,9 +50,9 @@ editButton.addEventListener('click', function() {
   openedPopup(popupProfile);
 });
 escButtonProfile.addEventListener('click', function() {
-  //используем функция открытия попапа при нажатии на кнопку добавления нововй карточки
-  closePopup(popupProfile);
-});
+   //используем функция закрытия попапа при нажатии на кнопку добавления нововй карточки
+   closePopup(popupProfile);
+ });
 
 formProfile.addEventListener('submit', handleProfileFormSubmit);
 
@@ -116,6 +135,8 @@ function createCard ({name, link}) {
     return card;
 
 }
+
+
 
 imgButtonEsc.addEventListener('click', function() {
   //используем функцию закрытия попапа при закрытии картинки
