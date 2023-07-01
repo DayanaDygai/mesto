@@ -12,6 +12,7 @@ function openedPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
   popup.addEventListener('click', closeOverlay);
+  document.addEventListener('click', closePopupButtonClose);
 }
 
 function closePopup (popup) {
@@ -19,13 +20,14 @@ function closePopup (popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
   popup.removeEventListener('click', closeOverlay);
+  document.removeEventListener('click', closePopupButtonClose);
+
 }
 
 function closeOverlay (evt) {
   //функция закрытия попапов при клике на оверлей
   if(evt.target.classList.contains('popup_opened')) {
-    const popup = document.querySelector('.popup_opened');
-    closePopup(popup);
+    closePopup(evt.target);
   };
 }
 
@@ -37,6 +39,20 @@ function closePopupEsc(evt) {
   }
 }
 
+function closePopupButtonClose () {
+  const closeButtons = document.querySelectorAll('.popup__button-esc');
+
+closeButtons.forEach((button) => {
+  // находим 1 раз ближайший к крестику попап 
+  const popup = button.closest('.popup');
+  // устанавливаем обработчик закрытия на крестик
+  button.addEventListener('click', () => closePopup(popup));
+ 
+});
+
+}
+
+
 function handleProfileFormSubmit (evt) {
   //функция изменения информации профиля
     evt.preventDefault();
@@ -47,12 +63,10 @@ function handleProfileFormSubmit (evt) {
 }
 editButton.addEventListener('click', function() {
   //используем функция открытия попапа при нажатии на кнопку добавления нововй карточки
+   nameInput.value = nameProfile.textContent;
+   jobInput.value = descriptionProfile.textContent;
   openedPopup(popupProfile);
 });
-escButtonProfile.addEventListener('click', function() {
-   //используем функция закрытия попапа при нажатии на кнопку добавления нововй карточки
-   closePopup(popupProfile);
- });
 
 formProfile.addEventListener('submit', handleProfileFormSubmit);
 
@@ -138,20 +152,13 @@ function createCard ({name, link}) {
 
 
 
-imgButtonEsc.addEventListener('click', function() {
-  //используем функцию закрытия попапа при закрытии картинки
-  closePopup(popupOpenImg);
-});
 
 addButton.addEventListener('click', function() {
   //используем функция открытия попапа при нажатии на кнопку добавления нововй карточки
+  disabledButton(popupButtonСreate, config); //вызываем функцию блокировки кнопки сохранения при каждом открытии попапа
   openedPopup(addCardPopup);
 });
 
-escButtonCardPopup.addEventListener('click', function() {
-  //используем функцию закрытия попапа при нажатии на кнопку еsc
-  closePopup(addCardPopup);
-});
 
 
 function handleCardFormSubmit (evt) {
