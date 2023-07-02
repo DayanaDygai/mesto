@@ -11,8 +11,7 @@ function openedPopup (popup) {
   //функция для открытия попапов
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
-  popup.addEventListener('click', closeOverlay);
-  closePopupButtonClose ();
+  popup.addEventListener('click', closeOverlay); 
 }
 
 function closePopup (popup) {
@@ -51,6 +50,8 @@ closeButtons.forEach((button) => {
 });
 
 }
+
+closePopupButtonClose ();
  
 
 
