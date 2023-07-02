@@ -12,7 +12,7 @@ function openedPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
   popup.addEventListener('click', closeOverlay);
-  document.addEventListener('click', closePopupButtonClose);
+  closePopupButtonClose ();
 }
 
 function closePopup (popup) {
@@ -20,7 +20,7 @@ function closePopup (popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
   popup.removeEventListener('click', closeOverlay);
-  document.removeEventListener('click', closePopupButtonClose);
+
 
 }
 
@@ -51,6 +51,7 @@ closeButtons.forEach((button) => {
 });
 
 }
+ 
 
 
 function handleProfileFormSubmit (evt) {
