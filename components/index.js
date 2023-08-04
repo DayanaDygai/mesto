@@ -15,19 +15,19 @@ const elementCard = document.querySelector('.cards__conteiner');//находим
 
 const addButton = document.querySelector('.profile__add-button');//находим кнопку добавления новых карточек
 const addCardPopup = document.querySelector('#popup__card');//находим попап добавления карточек
-const popupButtonСreate = addCardPopup.querySelector('.popup__button-save');//находим кнопку сохранение новых карточек
 const formCard = addCardPopup.querySelector('#popup__form-card');//находим форму добавления карточек
-const popupOpenImg = document.querySelector('#popup__image');//находим попап открытия картинок
-const popupImg = popupOpenImg.querySelector('.popup__img');//находим открытые картинки
-const popupTitleImg = popupOpenImg.querySelector('.popup__img-title');//находим заголовок открытой картинки
+export const popupOpenImg = document.querySelector('#popup__image');//находим попап открытия картинок
+export const popupImg = popupOpenImg.querySelector('.popup__img');//находим открытые картинки
+export const popupTitleImg = popupOpenImg.querySelector('.popup__img-title');//находим заголовок открытой картинки
 const titleInput = document.querySelector('.popup__input_type_title');
 const linkInput = document.querySelector('.popup__input_type_src');
 
-const formProfileValidator = new FormValidator(config, formProfile).enableValidation();//создаем экземпляр класса валидация для формы редактирования профиля
-const formCardValidator= new FormValidator(config, formCard).enableValidation();//создаем экземпляр класса валидация для формы добавления новых карточек
+const formProfileValidator = new FormValidator(config, formProfile);
+formProfileValidator.enableValidation();//создаем экземпляр класса валидация для формы редактирования профиля
+const formCardValidator= new FormValidator(config, formCard);//создаем экземпляр класса валидация для формы добавления новых карточек
+formCardValidator.enableValidation();
 
-
-function openedPopup (popup) {
+export function openedPopup (popup) {
   //функция для открытия попапов
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
@@ -87,6 +87,7 @@ editButton.addEventListener('click', function() {
    nameInput.value = nameProfile.textContent;
    jobInput.value = descriptionProfile.textContent;
   openedPopup(popupProfile);
+  formProfileValidator.resetValidation();
 });
 
 formProfile.addEventListener('submit', handleProfileFormSubmit);
@@ -118,10 +119,11 @@ const initialCards = [
   }
 ];
 
-addButton.addEventListener('click', function() {
+addButton.addEventListener('click', () => {
   //используем функция открытия попапа при нажатии на кнопку добавления нововй карточки
-  // disabledButton(popupButtonСreate); //вызываем функцию блокировки кнопки сохранения при каждом открытии попапа
+  //вызываем функцию блокировки кнопки сохранения при каждом открытии попапа
   openedPopup(addCardPopup);
+  formCardValidator.resetValidation();
 });
 
 
@@ -136,25 +138,10 @@ function handleCardFormSubmit (evt) {
 
 }
 
-function handleClickDelete(cardElement) {
-  cardElement.remove();
-}
-
-function handleClickLike(cardLike) {
-  cardLike.classList.toggle('card__button-like_active');
-}
-
-function handeClickImg(imgCard, cardTitle) {
-  openedPopup(popupOpenImg);
-  popupImg.src = imgCard.src
-  popupImg.alt = cardTitle.textContent;
-  popupTitleImg.textContent = cardTitle.textContent;
-}
-
 formCard.addEventListener('submit', handleCardFormSubmit)//при сохранении формы добавления новой карточки добавляем на страницу
 
 function renderCard({name, link}, container, position = 'append') {
-  const cardElement = new Card({name, link, handleClickDelete, handleClickLike, handeClickImg}, '#card-item-template').createCard();
+  const cardElement = new Card({name, link}, '#card-item-template').createCard();
   //функция определяющая куда будет добавлена карточка
     switch (position) {
       case "append":
