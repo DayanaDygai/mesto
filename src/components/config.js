@@ -4,8 +4,9 @@ export const config = {
   submitButtonSelector: '.popup__button-save',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_invalid',
-}
 
+}
+//объект селекторов для валидации
 
 
 
