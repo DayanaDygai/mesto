@@ -1,4 +1,4 @@
-import './pages/index.css'; 
+import './index.css'; 
 import {popupProfile, 
   editButton, 
   nameInput, 
@@ -8,14 +8,14 @@ import {popupProfile,
   addCardPopup, 
   formCard, 
   initialCards,
-  popupOpenImg,popupTitleImg, popupImg} from "./utils/constants.js";
-import {config} from "./components/config.js";
-import {Card} from "./components/Card.js";
-import { FormValidator } from "./components/FormValidator.js";
-import { Section } from "./components/Section.js";
-import { PopupWithImage } from "./components/PopupWithImage.js";
-import { PopupWithForm } from "./components/PopupWithForm.js";
-import { UserInfo } from "./components/UserInfo.js";
+  popupOpenImg,popupTitleImg, popupImg} from "../utils/constants.js";
+import {config} from "../components/config.js";
+import {Card} from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { Section } from "../components/Section.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { UserInfo } from "../components/UserInfo.js";
 
 
 
