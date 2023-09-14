@@ -7,8 +7,8 @@
     background-color: rgba(0, 0, 0, 0.5);
     align-items: center;
     object-fit: contain;
-    overflow: hidden;
-    transition: left .5s;
-    display: none;
+    visibility: hidden;
+    transition: visibility 0.2s, opacity 0.2s ease-in;
+    display: flex;
 }
 

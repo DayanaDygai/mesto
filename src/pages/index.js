@@ -9,7 +9,7 @@ import {popupProfile,
   formCard, 
   initialCards,
   popupOpenImg,popupTitleImg, popupImg} from "../utils/constants.js";
-import {config} from "../components/config.js";
+import {config} from "../utils/config.js";
 import {Card} from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
@@ -32,7 +32,7 @@ const userInfo = new UserInfo({
   descriptionProfileSelector: '.profile__description'});
 
 //Функция для создания экземпляров класса Card
-  const cardAdd = ({name, link}) => {
+  const addCard = ({name, link}) => {
     const card = new Card({name, link}, handleCardClick, '#card-item-template')
     return card.createCard();
     
@@ -40,8 +40,8 @@ const userInfo = new UserInfo({
 
   //Создаем эекземпляр класса Section для отрисовки карточек
   const cardSection = new Section({data: initialCards, 
-    renderer: (item) => {
-      const newCard = cardAdd(item);
+      renderer: (item) => {
+      const newCard = addCard(item);
       cardSection.addItem(newCard);
   }
   }, ".cards__conteiner")
@@ -51,12 +51,13 @@ const userInfo = new UserInfo({
 //попапы
 
 //создаем эекземпляр класса PopupWithImage для открытой картинки
-const popupImage = new PopupWithImage({popupSelector:popupOpenImg},popupImg, popupTitleImg );
+const popupImage = new PopupWithImage({popupSelector:'#popup__image'},popupImg, popupTitleImg );
+popupImage.setEventListeners();
 
 //создаем эекземпляр класса PopupWithForm для попапа редактирования информации
-const profilePopup = new PopupWithForm(popupProfile,
- {submitHandler: () => {
-    userInfo.setUserInfo({name:nameInput.value, work:jobInput.value});
+const profilePopup = new PopupWithForm('#popup__profile',
+ {submitHandler: ({name, work}) => {
+    userInfo.setUserInfo({name, work});
     profilePopup.closePopup();
   
 }
@@ -66,9 +67,9 @@ profilePopup.setEventListeners();//вешаем обработчики на по
 
 
 //создаем эекземпляр класса PopupWithForm для попапа редактирования информации
-const cardPopup = new PopupWithForm(addCardPopup, {
+const cardPopup = new PopupWithForm('#popup__card', {
   submitHandler: ({name,link}) => {
-  const newCard = cardAdd({name,link})
+  const newCard = addCard({name,link})
   cardSection.addItem(newCard)
   cardPopup.closePopup();
 
@@ -82,7 +83,6 @@ cardPopup.setEventListeners();//вешаем обработчики событи
 //функция для открытия попапа картинок
 function handleCardClick(title, link) {
   popupImage.openedPopup(title, link);
-  popupImage.setEventListeners();
    
 }
 

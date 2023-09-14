@@ -5,12 +5,12 @@ export class UserInfo {
     }
 
     getUserInfo(){
-       const data = {
-            name: this._nameProfile,
-            work: this._descriptionProfile
+       return {
+            name: this._nameProfile.textContent,
+            work: this._descriptionProfile.textContent
         }
 
-        return data
+       
     }
 
     setUserInfo({name, work}){      
