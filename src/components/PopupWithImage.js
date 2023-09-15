@@ -9,8 +9,8 @@ export class PopupWithImage extends Popup{
     }
 
     //метод открытия попапа
-    openedPopup(title, src) {
-        super.openedPopup();
+    openPopup(title, src) {
+        super.openPopup();
         this._popupImg.src = src;
         this._popupImg.alt = title;
         this._titleImg.textContent = title;

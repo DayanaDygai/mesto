@@ -58,6 +58,7 @@ popupImage.setEventListeners();
 const profilePopup = new PopupWithForm('#popup__profile',
  {submitHandler: ({name, work}) => {
     userInfo.setUserInfo({name, work});
+    
     profilePopup.closePopup();
   
 }
@@ -82,17 +83,16 @@ cardPopup.setEventListeners();//вешаем обработчики событи
 
 //функция для открытия попапа картинок
 function handleCardClick(title, link) {
-  popupImage.openedPopup(title, link);
+  popupImage.openPopup(title, link);
    
 }
 
 //функция для открытия попапа редактирования
 const opepPopupProfile = ()=> {
   const {name, work} = userInfo.getUserInfo()
-  nameInput.value =  name.textContent;
-  jobInput.value =  work.textContent;
+  profilePopup.setInputValues({name, work})
   formProfileValidator.resetValidation();
-  profilePopup.openedPopup();
+  profilePopup.openPopup();
 
 
 };
@@ -102,7 +102,7 @@ const openPopupCardAdd = () => {
   //используем функция открытия попапа при нажатии на кнопку добавления нововй карточки
     //вызываем функцию блокировки кнопки сохранения при каждом открытии попапа
     formCardValidator.resetValidation();
-    cardPopup.openedPopup();
+    cardPopup.openPopup();
    
 
 }

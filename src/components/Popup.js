@@ -2,15 +2,15 @@ export class Popup {
 
     constructor(popupSelector) {
       this._popup = document.querySelector(popupSelector);
-       this._closeButtons =  document.querySelectorAll('.popup__button-esc');
+       this._closeButtons =  this._popup.querySelector('.popup__button-esc');
        this._handleEscClose = this._handleEscClose.bind(this);
     }
 
-   openedPopup () {
-        //функция для открытия попапов
+   openPopup () {
+        //функция для открытия попаповthis._popup
         this._popup.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose );
-        this._popup.addEventListener('click', this.closeOverlay); 
+
        
       }
       
@@ -18,7 +18,6 @@ export class Popup {
         //функция закрытия попапов
         this._popup.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._handleEscClose );
-        this._popup.removeEventListener('click', this.closeOverlay);
       }
       
     closeOverlay (evt) {
@@ -35,12 +34,14 @@ export class Popup {
       }
       
       setEventListeners() {     
-        this._closeButtons.forEach((button) => {
-        button.addEventListener('click', () => this.closePopup())
-      });
+        // this._closeButtons.forEach((button) => {
+        // button.addEventListener('click', () => this.closePopup())
+
+      // });
+      this._closeButtons.addEventListener('click', () => this.closePopup())
         
       this._popup.addEventListener('mousedown', (e) => {
-          if  ((e.currentTarget === e.target) || (e.target === this._closeButtons)) {
+          if  ((e.currentTarget === e.target)) {
             this.closePopup();
           }
       })
