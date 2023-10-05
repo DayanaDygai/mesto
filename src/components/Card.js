@@ -30,7 +30,6 @@ export class Card {
 	//метод переключения лайка
 	toggleLike() {
 		this._cardLike.classList.toggle('card__button-like_active')
-		// this._likesCounter.textContent = likes.length
 	  }
 
 	//метод проверки наличия лайка на карточке
@@ -46,12 +45,10 @@ export class Card {
 	counterLike(likes) {
 		likes.forEach(item => {
 		  if (item._id === this._cardId) {
-			this._cardLike.classList.add('card__button-like_active')	
-			return		
-		  }
-		  this._likesCounter.textContent = likes.length
+			this._cardLike.classList.add('card__button-like_active')					
+		} 
 		})
-		
+		this._likesCounter.textContent = likes.length
 	  }
 
 	  

@@ -26,7 +26,7 @@ const apiOptions = {
 }
 const api = new Api(apiOptions)
 
-let myId = '';
+let myId;
 
 Promise.all([
   api.getUserInfo(), 
@@ -76,7 +76,7 @@ const userInfo = new UserInfo({
     if (checkLiked) {
         api.deleteLike(cardId)
             .then((res) => {
-              card.counterLike(res.likes)
+                card.counterLike(res.likes)
                 card.toggleLike();
                
             })
@@ -84,7 +84,7 @@ const userInfo = new UserInfo({
     } else {
         api.addLike(cardId)
             .then((res) => {
-              card.counterLike(res.likes)
+                card.counterLike(res.likes)
                 card.toggleLike();
                 
             })

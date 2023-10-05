@@ -82,15 +82,15 @@ export class Api {
         })
     }
 
-    deleteLike(_id) {
-        return this._getRequest(`${this._url}/cards/${_id}/likes`, {
+    deleteLike(id) {
+        return this._getRequest(`${this._url}/cards/${id}/likes`, {
             method: 'DELETE',
             headers: this._headers
         })
     }
 
-    addLike(_id) {
-        return this._getRequest(`${this._url}/cards/${_id}/likes`, {
+    addLike(id) {
+        return this._getRequest(`${this._url}/cards/${id}/likes`, {
             method: "PUT",
             headers: this._headers
         })
