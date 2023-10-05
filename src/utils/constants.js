@@ -16,6 +16,9 @@ export const titleInput = addCardPopup.querySelector('.popup__input_type_title')
 export const linkInput = addCardPopup.querySelector('.popup__input_type_src');
 export const inputValues = document.querySelector('.popup__input')
 export const cardTemplate = '#card-item-template';
+export const popupAvatar = document.querySelector('#popup__avatar')
+export const formAvatar = popupAvatar.querySelector('#popup__form-avatar')
+export const editButtonAvatar = document.querySelector('.profile__avatar-edit-button')
 
 export const initialCards = [
   {

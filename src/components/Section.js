@@ -3,10 +3,10 @@ _renderer;
 _containerSelector;
 
 
-  constructor({data, renderer}, selector) {
+  constructor({renderer}, selector) {
       this._renderer = renderer;
       this._container = document.querySelector(selector);
-      this._items = data;
+  
     
   }
 
@@ -17,8 +17,8 @@ _containerSelector;
       }
 
   //метод для вызова функции рендерер на всех инпутах формы попапов     
-  renderItems() {
-    this._items.forEach((item) =>
+  renderItems(items) {
+    items.forEach((item) =>
         this._renderer(item)
       );
     }

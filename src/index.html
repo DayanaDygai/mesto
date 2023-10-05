@@ -11,14 +11,15 @@
     </header>
     <main class="content">
         <section class="profile">
-            <div class="profile__avatar"></div>
+          <button class="profile__avatar-edit-button" type="button">
+            <img class="profile__avatar" src="#" alt="Аватар">
+          </button> 
             <div class="profile__info">
               <div class="profile__info-element">
-                <h1 class="profile__name" >Жак-Ив Кусто</h1>
+                <h1 class="profile__name"></h1>
                 <button class="profile__edit-button" type="button"></button>
-               
             </div>
-              <p class="profile__description">Исследователь океана</p>            
+              <p class="profile__description"></p>            
             </div> 
             <button class="profile__add-button" type="button"></button>
         </section>
@@ -38,10 +39,10 @@
           </button>
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__input-container">
-              <input minlength="2" maxlength="40" autocomplete="off" type="text" class="popup__input popup__input_type_name" id="name-input"  placeholder="Ваше Имя" value="Жак-Ив Кусто" name="name" required>
+              <input minlength="2" maxlength="40" autocomplete="off" type="text" class="popup__input popup__input_type_name" id="name-input"  placeholder="Ваше Имя" name="name" required>
               <span id="user-error" class="popup__input-error name-input-error"></span>
-              <input minlength="2" maxlength="200" type="text" class="popup__input popup__input_type_work"  id="work-input"  placeholder="Место работы" value="Исследователь океана" name="work" required>
-              <span id="work-error" class="popup__input-error work-input-error"></span>
+              <input minlength="2" maxlength="200" type="text" class="popup__input popup__input_type_work"  id="about-input"  placeholder="Место работы" name="about" required>
+              <span id="work-error" class="popup__input-error about-input-error"></span>
           </fieldset>
           <button class="popup__button-save" type="submit">Сохранить</button>
         </form>
@@ -64,6 +65,32 @@
           </form>
           </div>
         </div>
+        <div class="popup" id="popup__avatar">
+          <div class="popup__container popup__container_form">
+            <form class="popup__form" id="popup__form-avatar" name="popup__avatar" novalidate>
+              <button class="popup__button-esc" type="button">
+                <img class="popup__esc-icon"  src="<%=require('./images/close_icon.svg')%>" alt="Нравится">
+              </button>
+              <h2 class="popup__title">Обновить аватар</h2>
+              <fieldset class="popup__input-container">
+                  <input type="url" class="popup__input popup__input_type_src" id="link-input" required placeholder="Ссылка на картинку" value="" name="avatar">
+                  <span id="link-error" class="popup__input-error link-input-error"></span>
+              </fieldset>
+              <button class="popup__button-save" type="submit">Сохранить</button>  
+            </form>
+            </div>
+          </div>
+        <div class="popup" id="popup__delete">
+          <div class="popup__container popup__container_form">
+            <form class="popup__form" id="popup__form-delete" name="popup__delete" novalidate>
+              <button class="popup__button-esc" type="button">
+                <img class="popup__esc-icon"  src="<%=require('./images/close_icon.svg')%>" alt="Нравится">
+              </button>
+              <h2 class="popup__title">Вы уверены?</h2>
+              <button class="popup__button-save" type="submit">Да</button>  
+            </form>
+            </div>
+          </div>
         <div class="popup popup_image" id="popup__image">
           <div class="popup__container popup__container_img">
               <button class="popup__button-esc popup__button-esc_image" type="button">
@@ -76,12 +103,16 @@
     <template id="card-item-template">
       <article class="card">
         <img class="card__img">
+        <button class="card__remove-button" type="button"></button>
         <div class="card__list">
           <h2 class="card__title"></h2>
-          <button class="card__like-button" type="button"></button>
-          <button class="card__remove-button" type="button"></button>
+          <div class="card__like-conteiner">
+            <button class="card__like-button" type="button"></button>
+            <div class="card__like-counter">0</div>
+          </div>
         </div>
       </article>
     </template>
 </body>
 </html>
+
