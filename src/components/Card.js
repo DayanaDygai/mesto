@@ -10,7 +10,6 @@ export class Card {
 			this._handleCardLike = handleCardLike;
 			this._userId = userId;
 			this._arrLikes = data.likes;
-			this._likesLength = data.likes.length;
 			this._ownerId = data.owner._id;
 			this._cardId = data._id;
 			this._cardElement = this._getCard();
@@ -29,9 +28,9 @@ export class Card {
 	}
 
 	//метод переключения лайка
-	toggleLike(likes) {
+	toggleLike() {
 		this._cardLike.classList.toggle('card__button-like_active')
-		this._likesCounter.textContent = likes.length
+		// this._likesCounter.textContent = likes.length
 	  }
 
 	//метод проверки наличия лайка на карточке
@@ -44,12 +43,13 @@ export class Card {
 	  }
 
 	//метод добавления лайков в счетчик из массива
-	_counterLike() {
-		this._arrLikes.forEach(item => {
+	counterLike(likes) {
+		likes.forEach(item => {
 		  if (item._id === this._cardId) {
-			this._cardLike.classList.add('card__button-like_active')			
+			this._cardLike.classList.add('card__button-like_active')	
+			return		
 		  }
-		  this._likesCounter.textContent = this._likesLength
+		  this._likesCounter.textContent = likes.length
 		})
 		
 	  }
@@ -82,7 +82,7 @@ export class Card {
 		this._imgCard.src = this._img;
 		this._imgCard.alt = this._title;
 		this._cardTitle.textContent = this._title;
-		this._counterLike();
+		this.counterLike(this._arrLikes);
 		this._setCardButtonDelete();
 		this._setEventListener(); //вешаем обработчики событий на карточки
 		return this._cardElement; 

@@ -76,13 +76,17 @@ const userInfo = new UserInfo({
     if (checkLiked) {
         api.deleteLike(cardId)
             .then((res) => {
-                card.toggleLike(res.likes)
+              card.counterLike(res.likes)
+                card.toggleLike();
+               
             })
             .catch((error) => console.log(`ошибка: ${error}`))
     } else {
         api.addLike(cardId)
             .then((res) => {
-                card.toggleLike(res.likes)
+              card.counterLike(res.likes)
+                card.toggleLike();
+                
             })
             .catch((error) => console.log(`ошибка: ${error}`))
     }},
