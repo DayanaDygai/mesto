@@ -1,24 +1,24 @@
 
 export class Card {
-    constructor(data, userId,handleCardClick, handleDeleteCard, handleCardLike,
-			 templateCard) {
-			this._title = data.name;
-			this._img = data.link;
-			this._handleCardClick = handleCardClick;
-			this._templateCard = templateCard;
-			this._handleDeleteCard = handleDeleteCard;
-			this._handleCardLike = handleCardLike;
-			this._userId = userId;
-			this._arrLikes = data.likes;
-			this._ownerId = data.owner._id;
-			this._cardId = data._id;
-			this._cardElement = this._getCard();
-			this._imgCard  = this._cardElement.querySelector('.card__img');
-			this._cardTitle = this._cardElement.querySelector('.card__title');//находим заголовок карточки    
-			this._cardLike = this._cardElement.querySelector('.card__like-button');//находим кнопку лайка карточки
-			this._cardRemove = this._cardElement.querySelector('.card__remove-button');//находим кнопку удаления карточки
-			this._likesCounter = this._cardElement.querySelector('.card__like-counter')//находим счетчик лайков
-    }
+  constructor(data, userId,handleCardClick, handleDeleteCard, handleCardLike,
+      templateCard) {
+    this._title = data.name;
+    this._img = data.link;
+    this._handleCardClick = handleCardClick;
+    this._templateCard = templateCard;
+    this._handleDeleteCard = handleDeleteCard;
+    this._handleCardLike = handleCardLike;
+    this._userId = userId;
+    this._arrLikes = data.likes;
+    this._ownerId = data.owner._id;
+    this._cardId = data._id;
+    this._cardElement = this._getCard();
+    this._imgCard  = this._cardElement.querySelector('.card__img');
+    this._cardTitle = this._cardElement.querySelector('.card__title');//находим заголовок карточки    
+    this._cardLike = this._cardElement.querySelector('.card__like-button');//находим кнопку лайка карточки
+    this._cardRemove = this._cardElement.querySelector('.card__remove-button');//находим кнопку удаления карточки
+    this._likesCounter = this._cardElement.querySelector('.card__like-counter')//находим счетчик лайков
+  }
 
 	_getCard() {
 		return document
@@ -28,34 +28,37 @@ export class Card {
 	}
 
 	//метод переключения лайка
-	toggleLike() {
-		this._cardLike.classList.toggle('card__button-like_active')
+	toggleLike(likes) {
+		this._cardLike.classList.toggle('card__button-like_active');
+		this._likesCounter.textContent = likes.length;
+
 	  }
 
 	//метод проверки наличия лайка на карточке
-	checkLiked = () => {
+	checkLiked = () => { 
 		return this._cardLike.classList.contains('card__button-like_active');
-	  }
+    }
 
 	_handleLike = () => { 
 		this._handleCardLike(this.checkLiked(), this._cardId);
 	  }
 
 	//метод добавления лайков в счетчик из массива
-	counterLike(likes) {
-		likes.forEach(item => {
-		  if (item._id === this._cardId) {
-			this._cardLike.classList.add('card__button-like_active')					
-		} 
-		})
-		this._likesCounter.textContent = likes.length
-	  }
-
+	
+	counterLike = () => { 
+		this._arrLikes.forEach(item => {
+      if (item._id === this._userId) {
+          this._cardLike.classList.add('card__button-like_active')
+          return
+      }
+      })
+      this._likesCounter.textContent = this._arrLikes.length;
+	  } 
 	  
-
 	//метод удаления карточки
 	deleteCard() {
 		this._cardElement.remove();
+		this._cardElemen = null;
 	}
 
 	_handleDelete = () => {
@@ -65,21 +68,19 @@ export class Card {
 
 	//метод для добавления/блокировки кнопки удления карточки
 	_setCardButtonDelete() {
-        if(this._userId === this._ownerId) {
-		this._cardRemove.style.display = 'block';
+    if(this._userId === this._ownerId) {
+		  this._cardRemove.style.display = 'block';
 	  } else {
-		this._cardRemove.style.display = 'none';
+		  this._cardRemove.style.display = 'none';
 	}
-
     }
 
 	createCard () {
 	//функция добавления новых карточек на страницу
-
 		this._imgCard.src = this._img;
 		this._imgCard.alt = this._title;
 		this._cardTitle.textContent = this._title;
-		this.counterLike(this._arrLikes);
+		this.counterLike();
 		this._setCardButtonDelete();
 		this._setEventListener(); //вешаем обработчики событий на карточки
 		return this._cardElement; 

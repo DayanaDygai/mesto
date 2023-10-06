@@ -6,7 +6,7 @@ import {editButton,
   popupTitleImg,
   popupImg,
   formAvatar,
-  editButtonAvatar} from "../utils/constants.js";
+  editButtonAvatar, apiOptions} from "../utils/constants.js";
 import {config} from "../utils/config.js";
 import {Card} from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -17,13 +17,7 @@ import { UserInfo } from "../components/UserInfo.js";
 import {Api} from "../components/Api.js";
 import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 
-const apiOptions = {
-  url:'https://mesto.nomoreparties.co/v1/cohort-76',
-  headers: {
-    authorization:'eda5b0b1-35bd-4b47-92b2-3de2fac0e53a',
-    'Content-Type':'application/json'
-  }
-}
+
 const api = new Api(apiOptions)
 
 let myId;
@@ -33,10 +27,10 @@ Promise.all([
   api.getAllCards()
   ])
   .then(([dataUser, arrCards]) => {
-      myId = dataUser._id;
-      userInfo.setUserInfo(dataUser);
-      arrCards.reverse();
-      cardSection.renderItems(arrCards);
+    myId = dataUser._id;
+    userInfo.setUserInfo(dataUser);
+    arrCards.reverse();
+    cardSection.renderItems(arrCards);
   })
   .catch((error) => console.log(`ошибка: ${error}`));
 
@@ -59,48 +53,45 @@ const userInfo = new UserInfo({
 //Функция для создания экземпляров класса Card
   const addCard = (data) => {
     const card = new Card(data, myId,handleCardClick, 
-      (id) => {
-      popupDeleteCard.openPopup();
-      popupDeleteCard.setSubmit(() => {
-        api.delete(id)
-            .then(() => {
-              card.deleteCard();
-                popupDeleteCard.closePopup()
-            })
-            .catch((error) => console.log(`ошибка: ${error}`))
-            .finally(() => {
-              popupDeleteCard.setTextButton()
-            });
+    (id) => {
+    popupDeleteCard.openPopup();
+    popupDeleteCard.setSubmit(() => {
+      api.delete(id)
+        .then(() => {
+          card.deleteCard();
+            popupDeleteCard.closePopup()
+        })
+        .catch((error) => console.log(`ошибка: ${error}`))
+        .finally(() => {
+          popupDeleteCard.setTextButton()
+        });
     })
 }, (checkLiked, cardId) => {
     if (checkLiked) {
-        api.deleteLike(cardId)
-            .then((res) => {
-                card.counterLike(res.likes)
-                card.toggleLike();
-               
-            })
-            .catch((error) => console.log(`ошибка: ${error}`))
+      api.deleteLike(cardId)
+          .then((res) => {
+              card.toggleLike(res.likes);
+              
+          })
+          .catch((error) => console.log(`ошибка: ${error}`))
     } else {
         api.addLike(cardId)
-            .then((res) => {
-                card.counterLike(res.likes)
-                card.toggleLike();
-                
-            })
-            .catch((error) => console.log(`ошибка: ${error}`))
-    }},
-   '#card-item-template')
-  console.log(data)
-    return card.createCard();          
+          .then((res) => {
+            card.toggleLike(res.likes);
+              
+          })
+          .catch((error) => console.log(`ошибка: ${error}`))
+          }},
+  '#card-item-template')
+  return card.createCard();          
   }
 
 
   //Создаем эекземпляр класса Section для отрисовки карточек
   const cardSection = new Section({ 
-      renderer: (item) => {
-      const newCard = addCard(item);
-      cardSection.addItem(newCard);
+    renderer: (item) => {
+    const newCard = addCard(item);
+    cardSection.addItem(newCard);
   }
   }, ".cards__conteiner")
   
@@ -132,14 +123,17 @@ profilePopup.setEventListeners();//вешаем обработчики на по
 
 //создаем эекземпляр класса PopupWithForm для попапа добавления карточки
 const cardPopup = new PopupWithForm('#popup__card', {submitHandler: 
-  (item) => {
-  Promise.all([api.getUserInfo(), api.createCard(item)])
-      .then(([dataUser, dataCard]) => {
-          dataCard.myId = dataUser._id;
-          cardSection.addItem(addCard(dataCard))
-          cardPopup.closePopup();
-      })
-    }})
+  (data) => {
+    api.createCard(data)
+    .then((res) => {
+      cardSection.addItem(addCard(res))
+      cardPopup.closePopup();
+    })
+    .catch((error) => console.log(`ошибка: ${error}`))
+    .finally(() => cardPopup.setTextButton())
+  }
+    })
+
 
 
 cardPopup.setEventListeners();//вешаем обработчики события на попап добавления карточки
@@ -147,12 +141,12 @@ cardPopup.setEventListeners();//вешаем обработчики событи
 //создание попапа аватара
 const popupAvatar = new PopupWithForm('#popup__avatar',{submitHandler:(data) => {
   api.editAvatar(data)
-      .then((res) => {
-          userInfo.setUserInfo({name:res.name, about:res.about, avatar:res.avatar});
-          popupAvatar.closePopup();
-      })
-      .catch((error) => console.log(`ошибка: ${error}`))
-      .finally(() => popupAvatar.setTextButton()) }
+    .then((res) => {
+      userInfo.setUserInfo({name:res.name, about:res.about, avatar:res.avatar});
+      popupAvatar.closePopup();
+    })
+    .catch((error) => console.log(`ошибка: ${error}`))
+    .finally(() => popupAvatar.setTextButton()) }
 });
 
 popupAvatar.setEventListeners();

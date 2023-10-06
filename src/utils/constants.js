@@ -20,6 +20,14 @@ export const popupAvatar = document.querySelector('#popup__avatar')
 export const formAvatar = popupAvatar.querySelector('#popup__form-avatar')
 export const editButtonAvatar = document.querySelector('.profile__avatar-edit-button')
 
+export const apiOptions = {
+  url:'https://mesto.nomoreparties.co/v1/cohort-76',
+  headers: {
+    authorization:'eda5b0b1-35bd-4b47-92b2-3de2fac0e53a',
+    'Content-Type':'application/json'
+  }
+}
+
 export const initialCards = [
   {
     name: 'Архыз',
